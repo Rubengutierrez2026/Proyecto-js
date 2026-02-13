@@ -1,83 +1,75 @@
+// Base de datos clientes 
 
-// BASE DE DATOS SIMULADA
-let Nombre = "Adrian Gimenez"     
-let dni = 30570778
-let Banco = "Macro"
-let Agencia ="Cobro ya"
-let EstadoDeuda = "Deudor"
-let MontoDeuda = 2000
-let sinMonto = 0
-// EL USUARIO INGRESA DNI QUE SE GUARDA EN VARIABLE 
+class Cliente {
+  static id = 0 
+  constructor (dni,nombre,deuda,estado,banco,agencia) {
+    this.id = ++ Cliente.id,
+    this.dni = dni,
+    this.nombre = nombre,
+    this.deuda = deuda,
+    this.estado = estado,
+    this.banco = banco,
+    this.agencia = agencia
 
-let dniIngresado = parseInt (prompt("Ingrese el DNI del cliente:"))
-console.log(dniIngresado)
+  }
 
-// VALIDACION DE CLIENTE CON CONDICIONALES
-
-   if (dni == dniIngresado){
-    let resultado = Nombre 
-    alert("Nombre de Cliente: " + Nombre)
-   }else {
-    alert("Cliente inexistente")
-   }
- 
- 
-// FUNCIONES
-function montoDeuda(){
-    let sinmonto =  sinMonto
-    let monto = MontoDeuda 
-    let resultadoDeuda =  (MontoDeuda + sinMonto)
-    // console.log("Monto Adeudado: " + resultadoDeuda )
-    alert("Monto Adeudado: " + resultadoDeuda)
 }
-montoDeuda()
 
-function estadodeuda(){
-   if ( MontoDeuda > 0){
-    // console.log("Cliente con Deuda activa.!!!")
-    alert("Cliente con Deuda activa.!!!")
-   }else{
-    // console.log("Cliente no registra Deuda.!!!")
-    alert("Cliente no registra Deuda.!!!")
-   }
+const clientes = []
+
+const cargaClientes = () => {
+  let cargaDni = parseInt(prompt("Ingrese el Numero de DNI: "))
+  let cargaNombre = prompt("Cargue el nombre del Cliente: ")
+  let cargaDeuda = parseInt(prompt( "Cargue el monto de la Deuda: "))
+  let cargaEstado = prompt("Carga estado de la deuda: ")
+  let cargaBanco = prompt("Carga banco emisor de la deuda: ")
+  let cargaAgencia = prompt("Carga agencia de gestion de Deuda: ")
+
+  const cliente = new Cliente(cargaDni , cargaNombre , cargaDeuda , cargaEstado ,  cargaBanco , cargaAgencia )
+
+  clientes.push(cliente)
+  
+  // console.log (clientes)
+  
 }
-estadodeuda()
+// cargaClientes()
 
- 
+const verClientes = () =>{
+  if(clientes.length == 0){
+    alert("No hay clientes cargados")
+  }else{
+    console.log(clientes)
+  }
+}
+cargaClientes()
 
-    let menu = parseInt(prompt("Elija una opcion:  \n 1-Monto Deuda \n 2-Estado Deuda \n 3-Banco \n 4-Agencia \n 5-Salir"))
+let menu = parseInt(prompt(" Elija una opcion para continuar: \n 1 para ver Cliente, \n 2 para cargar Cliente nuevo, \n 3 para salir"))
+while( menu !== 3){
+  switch(menu) {
+    case 1:
+      verClientes()
+      break
 
-while(menu !== 5){
-    switch(menu) {
-        case 1:
-          montoDeuda()
-          break
-        
-        case 2:
-          estadodeuda()
-          break
-          
-        case 3:
-          bancos()  
-          break 
-        
-        case 4:
-          agencia()
-          break
-          
-        default:
-          alert("Opcion incorrecta")  
-         
-       }
-     menu = parseInt(prompt("Elija una opcion:  \n 1-Monto Deuda \n 2-Estado Deuda \n 3-Banco \n 4-Agencia \n 5-Salir"))
-
-}   
-        
-     
+    case 2:
+      cargaClientes()
+      break
+  
+    default:
+      alert("Opcion Incorrecta")  
 
 
-const bancos = ["Macro","Galicia","Santander","Hbc"]
-console.log(bancos)
- 
-const agencias =["Cobro ya","Credit","Asis","Cobromas"]
-console.log(agencias)
+  }
+  menu = parseInt(prompt(" Elija una opcion para continuar: \n 1 para ver Cliente, \n 2 para cargar Cliente nuevo, \n 3 para salir"))
+}
+
+// Storage
+// localStorage.setItem("clientes", clientes)
+// const clientesJSON = JSON.stringify (clientes)
+// localStorage.setItem("clientes",clientesJSON)
+// console.log(localStorage.getItem("clientes"))
+
+// const clientes1 = JSON.parse(localStorage.getItem(clientes))
+// console.log(clientes1)
+
+// Fos
+
