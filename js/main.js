@@ -41,7 +41,7 @@ const verClientes = () =>{
     console.log(clientes)
   }
 }
-cargaClientes()
+// cargaClientes()
 
 let menu = parseInt(prompt(" Elija una opcion para continuar: \n 1 para ver Cliente, \n 2 para cargar Cliente nuevo, \n 3 para salir"))
 while( menu !== 3){
@@ -62,14 +62,27 @@ while( menu !== 3){
   menu = parseInt(prompt(" Elija una opcion para continuar: \n 1 para ver Cliente, \n 2 para cargar Cliente nuevo, \n 3 para salir"))
 }
 
-// Storage
-// localStorage.setItem("clientes", clientes)
-// const clientesJSON = JSON.stringify (clientes)
-// localStorage.setItem("clientes",clientesJSON)
+Storage
+localStorage.setItem("clientes", clientes)
+const clientesJSON = JSON.stringify (clientes)
+localStorage.setItem("clientes",clientesJSON)
 // console.log(localStorage.getItem("clientes"))
 
-// const clientes1 = JSON.parse(localStorage.getItem(clientes))
-// console.log(clientes1)
+const clientes1 = JSON.parse(localStorage.getItem(clientes))
+console.log(clientes1)
 
-// Fos
+// ForEach devuelve nombre y monto adeudado
+clientes.forEach(cliente => {
+  console.log("Sr/Sra: "+cliente.nombre + "," + "El monto de la deuda es:$"+cliente.deuda)
+})
+
+
+let buscarAgencia = prompt("Ingrese el nombre de la agencia a Buscar: ")
+const filtro = clientes.filter (cliente =>cliente.agencia == buscarAgencia)
+
+// console.log(filtro)
+
+// Total de la deudade la base de datos
+const total = clientes.reduce((contador , Cliente)=> contador + Cliente.deuda, 0)
+console.log("Deuda total de la base de datos:$" +total)
 
