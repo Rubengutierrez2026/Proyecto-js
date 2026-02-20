@@ -86,3 +86,26 @@ const filtro = clientes.filter (cliente =>cliente.agencia == buscarAgencia)
 const total = clientes.reduce((contador , Cliente)=> contador + Cliente.deuda, 0)
 console.log("Deuda total de la base de datos:$" +total)
 
+
+let titulo = document.getElementById("title")
+console.log(titulo)
+titulo.innerText = "Informes de Clientes "
+
+let clients = document.getElementById ("clientes")
+
+clientes.forEach(cliente =>{
+  let card = document.createElement("div")
+  card.className = "card"
+  card.innerHTML = `<span> ID: ${cliente.id}</span>
+                    <h2 class ="card-client"> DNI: Nº${cliente.dni} </h2>
+                    <h2 class ="card-client"> Nombre: ${cliente.nombre}</h2>
+                    <h3 class ="card-h3"> Deuda: $${cliente.deuda}</h3>
+                    <h3 class ="card-h3"> Estado de la Deuda: ${cliente.estado}</h3>
+                    <h3 class ="card-h3"> Banco Emisor: ${cliente.banco}</h3>
+                    <h3 class  ="card-h3"> Agencia que Gestiona la Deuda: ${cliente.agencia}</h3> `
+                   clients.appendChild(card)
+})
+
+
+
+let input = document.getElementById("input")
